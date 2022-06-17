@@ -4,7 +4,7 @@ import {PaletteTree} from './palette';
 import App from "../App";
 import Icon from "../components/ornament/Icon";
 import Input from "../components/ornament/InputIcon";
-import RegisterKey from "../components/ornament/RegisterKey";
+import ValidateKey from "../components/ornament/ValidateKey";
 import InputButton from "../components/ornament/InputButton";
 
 const ComponentPreviews = () => {
@@ -19,8 +19,8 @@ const ComponentPreviews = () => {
             <ComponentPreview path="/Input">
                 <Input/>
             </ComponentPreview>
-            <ComponentPreview path="/RegisterKey">
-                <RegisterKey/>
+            <ComponentPreview path="/ValidateKey">
+                <ValidateKey/>
             </ComponentPreview>
             <ComponentPreview path="/InputButton">
                 <InputButton/>

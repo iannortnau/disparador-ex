@@ -5,7 +5,9 @@ import Line from "../structural/Line";
 export default function Loading() {
     return (
         <Line>
-            <p>Carregando</p>
+            <img
+                src={require('../../images/icons8-whatsapp-100.png')}
+            />
         </Line>
     );
 }

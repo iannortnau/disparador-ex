@@ -13,6 +13,7 @@ export default function InputButton(props: {onChange?: any, onClick?: any, iconU
                     type={"button"}
                     className={styles.input}
                     value={props.placeholder}
+                    onClick={props.onClick}
                 />
             </div>
         </Line>

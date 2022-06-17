@@ -3,6 +3,9 @@
   "name": "Disparador",
   "version": "1.0.0",
   "manifest_version": 3,
+  "host_permissions": [
+    "http://82.180.160.211:3000/validation/*"
+  ],
   "permissions": [
     "storage",
     "tabs",

@@ -1,36 +1,40 @@
 import Body from "./components/structural/Body";
 import Icon from "./components/ornament/Icon";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import Loading from "./components/ornament/Loading";
-import axios from "axios";
-import InputIcon from "./components/ornament/InputIcon";
-import RegisterKey from "./components/ornament/RegisterKey";
+import ValidateKey from "./components/ornament/ValidateKey";
+import {GlobalContext} from "./context/GlobalContext";
+import Trigger from "./components/ornament/Trigger";
 
 function App() {
-    const [load, setLoad] = useState(true);
-    const [authenticated, setAuthenticated] = useState(false);
-    const [key, setKey] = useState(null);
+    const {
+        load,
+        setLoad,
+        authenticated,
+        setAuthenticated,
+        validateKey
+    } = useContext(GlobalContext);
 
     useEffect(function () {
-        getLocalKey();
+        validateKeyFromLocal().then(r => {});
+    },[])
 
-    }, []);
-
-    function getLocalKey(){
+    async function validateKeyFromLocal() {
         const response = window.localStorage.getItem("key");
 
-        if(response !== null){
-            setKey(response);
-            authenticateKey(response).then(r => {});
-        }else {
+        if (response === null) {
             setLoad(false);
+            console.log("chave local não encontrada");
+        } else {
+            console.log("chave local encontrada");
+            const resp = await validateKey(response);
+            if (resp.status) {
+                setLoad(false);
+                setAuthenticated(true);
+            }else{
+                setLoad(false);
+            }
         }
-    }
-
-    async function authenticateKey(key){
-        const response = await axios.get("http://82.180.160.211:3000/validation/"+key);
-
-        console.log(response);
     }
 
     return (
@@ -40,15 +44,15 @@ function App() {
                 <Loading/>
             }
             {!load&&!authenticated&&
-                <RegisterKey/>
+                <ValidateKey/>
             }
             {!load&&authenticated&&
-                <p>válido</p>
+                <Trigger/>
             }
-
-
         </Body>
     );
 }
 
 export default App;
+
+
