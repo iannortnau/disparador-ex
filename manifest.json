@@ -1,0 +1,40 @@
+{
+  "short_name": "Disparador",
+  "name": "Disparador",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "host_permissions": [
+    "http://82.180.160.211:3000/validation/*"
+  ],
+  "externally_connectable": {
+    "matches": ["*://web.whatsapp.com/*"]
+  },
+  "permissions": [
+    "scripting",
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "./src/source/background.js"
+  },
+  "action": {
+    "default_popup": "build/index.html",
+    "default_icon": {
+      "16": "/images/icon.png",
+      "32": "/images/icon.png",
+      "48": "/images/icon.png",
+      "128": "/images/icon.png"
+    }
+  },
+  "icons": {
+    "16": "/images/icon.png",
+    "32": "/images/icon.png",
+    "48": "/images/icon.png",
+    "128": "/images/icon.png"
+  },
+  "web_accessible_resources": [{
+    "resources": ["./src/source/script.js"],
+    "matches": ["<all_urls>"]
+  }]
+}
